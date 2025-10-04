@@ -1,6 +1,44 @@
-﻿label cap1_start:
+﻿# script.rpy
 
-    # Escena inicial: llegada de David
+label start:
+    jump cap1_start
+
+# =========================
+# VARIABLES INICIALES
+# =========================
+default humanidad = 0
+default violencia = 0
+default lealtad_corp = 0
+default camino = ""
+
+# =========================
+# DEFINICIÓN DE PERSONAJES
+# =========================
+define d = Character("David", color="#FFD700")
+define gloria = Character("Gloria", color="#FF9999")
+define yumi = Character("Yumi", color="#99CCFF")
+define rex = Character("Rex", color="#FF6600")
+define teacher = Character("Profesora Arasaka", color="#CCCCCC")
+
+# =========================
+# ESCENARIOS
+# =========================
+image bg_nightcity_district = "images/bg_nightcity_district.jpg"
+image bg_classroom_arasaka = "images/bg_classroom_arasaka.jpg"
+
+# =========================
+# PERSONAJES VISUALES
+# =========================
+image gloria worried = "images/gloria_worried.png"
+image yumi neutral = "images/yumi_neutral.png"
+image rex smug = "images/rex_smug.png"
+image teacher_arasaka = "images/teacher_arasaka.png"
+
+# =========================
+# CAPÍTULO 1
+# =========================
+label cap1_start:
+
     scene bg_nightcity_district with fade
     play music "music/nightcity_loop.ogg" fadein 1.0
 
@@ -8,9 +46,7 @@
     "Soy David Martínez. Hoy es mi primer día en la prestigiosa Academia Arasaka."
     "Mamá cree que este es el comienzo de algo grande, pero yo sé lo que significa vivir en las calles: nadie te espera si caes."
 
-    show gloria worried at left
-    with dissolve
-
+    show gloria worried at left with dissolve
     gloria "David… recuerda comer algo antes de entrar, no llegues muerto de hambre como siempre."
     d "Lo sé, mamá. Estoy bien."
     gloria "Solo cuida tu espalda, cariño. No todos aquí son gente decente."
@@ -19,9 +55,7 @@
     "El camino hasta la entrada principal es un caos de hologramas, anuncios de ciberimplantes y drones patrullando el área."
     "No hay margen de error. En Arasaka, la perfección es una obligación, y cualquier fallo puede costarte caro."
 
-    show yumi neutral at right
-    with dissolve
-
+    show yumi neutral at right with dissolve
     yumi "¡Eh, David! Llegas justo a tiempo… aunque no sé si para bien o para mal."
     d "Yumi… vaya, ya veo que estás igual de sarcástica que siempre."
     yumi "Aprenderás rápido que en esta ciudad, los que no se adaptan, se quedan atrás."
@@ -42,18 +76,16 @@
             d "¡Solo quiero entrar y empezar! No necesito charlas."
             yumi "Calma, Martínez… nadie aquí tolera impulsos tontos."
 
-    # Escena en el aula
     scene bg_classroom_arasaka with fade
     play music "music/academia_loop.ogg" fadein 1.0
 
     "El aula está llena de estudiantes con implantes recién estrenados, trajes corporativos y chips de datos parpadeando en sus muñecas."
     "Rex Arasaka, el hijo del ejecutivo que supervisa esta generación, me lanza una mirada desde su asiento."
-    show rex smug at right
-    with dissolve
 
+    show rex smug at right with dissolve
     rex "Así que tú eres David Martínez… he oído de ti. Vamos a ver si eres digno de Arasaka."
     d "(Su mirada me pesa… pero no puedo mostrar miedo.)"
-    
+
     menu:
         "¿Cómo responder a Rex?"
         "Con firmeza, sin miedo":
@@ -69,18 +101,14 @@
             d "¿Dignidad Arasaka? Suena más a publicidad."
             rex "¡Ja! Otro que piensa que es gracioso… veremos hasta cuándo."
 
-    "La profesora entra, y el aula guarda silencio. Su presencia impone más que cualquier holograma."
-    show teacher_arasaka at center
-    with dissolve
-
+    show teacher_arasaka at center with dissolve
     teacher "Bienvenidos a la Academia Arasaka. Este año será distinto… exigiremos lo mejor de ustedes."
     teacher "Recuerden: aquí, cada decisión que tomen afectará su futuro. Cada error será recordado."
-    
+
     "Un escalofrío recorre mi espalda. Las palabras de la profesora no son solo formalidades: son advertencias."
 
-    # Primer conflicto moral
     "Durante el recreo, veo a un estudiante más joven siendo intimidado por un grupo de compañeros con implantes visibles y armas de entrenamiento."
-    
+
     menu:
         "¿Qué hace David?"
         "Intervenir y ayudar al estudiante":
@@ -97,7 +125,14 @@
             "David empuja al líder del grupo y se gana respeto inmediato, aunque despierta enemistad."
             rex "Hmm… ese chico tiene agallas… y problemas en puerta."
 
+    # Evaluación del camino
+    if humanidad > violencia and humanidad > lealtad_corp:
+        $ camino = "calle"
+    elif lealtad_corp > humanidad and lealtad_corp > violencia:
+        $ camino = "corporación"
+    else:
+        $ camino = "caos"
+
     "El día termina con más preguntas que respuestas. Night City se extiende bajo un cielo de neón, recordándome que cada decisión que tome me acercará a la calle, a la corporación, o a la perdición."
 
-    # Final del capítulo 1
     jump cap2_start

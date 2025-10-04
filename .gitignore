@@ -1,26 +1,40 @@
-# --- Python ---
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.db
+# Archivos compilados de Ren'Py
+*.rpyc
+*.rpyb
+*.rpymc
 
-# --- Ren'Py ---
-saves/
+# Archivos de log
 log.txt
 errors.txt
 traceback.txt
-persistent
+lint.txt
+
+# Carpetas generadas
+saves/
 tmp/
 cache/
-game/cache/
-game/tl/*/cache/
 
-# --- Ren'Py exports (builds generadas) ---
-dist/
-build/
-*.rpa
+# Archivos de Python
+*.pyc
+*.pyo
+*.egg-info
 
-# --- Archivos de sistema (Windows / Mac) ---
+# Archivos temporales y de respaldo
+*~
+*.bak
+
+# Archivos específicos de plataformas
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Ejecutables de Ren'Py
+/renpy.exe
+/renpy.sh
+/renpy.app
+
+# Otros
+*.keystore
+*.zip
+*.json
