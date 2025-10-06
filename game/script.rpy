@@ -1,18 +1,60 @@
-﻿label capitulo_1:
+﻿# script.rpy
+define denji = Character("Denji", color="#f4c542")
+define makima = Character("Makima", color="#e34234")
+define aki = Character("Aki", color="#42a5f5")
+define power = Character("Power", color="#ec407a")
+define pochita = Character("Pochita", color="#ff7043")
+define yakuza = Character("Yakuza", color="#999999")
+define narrator = Character(None)
+
+
+label start:
+
+    jump prologo
+
+label prologo:
+
+    scene black with fade
+    play music "audio/soft_theme.ogg"
+
+    narrator "En este mundo, los miedos toman forma. El miedo a la oscuridad. El miedo a morir. El miedo a vivir."
+
+    narrator "Y cuando el miedo se hace carne... nacen los demonios."
+
+    narrator "Algunos los cazan por deber. Otros por poder. Y algunos... solo para sobrevivir."
+
+    scene bg_denji_room with fade
+
+    show denji tired at center
+    denji "Mi nombre es Denji. Tengo dieciséis años. Y mi vida vale menos que un paquete de cigarrillos."
+
+    show pochita happy at left
+    pochita "Pero tienes a mí, Denji."
+
+    denji "Sí, Pochita. Tú eres lo único que me queda."
+
+    narrator "Denji vende partes de su cuerpo para pagar deudas. Un ojo. Un riñón. Un testículo."
+
+    narrator "Su padre se suicidó. Su madre murió tosiendo sangre. Ahora vive en una choza húmeda con un demonio motosierra como mascota."
+
+    denji "¿Crees que algún día viviremos bien? Comer pan con mermelada. Dormir en una cama limpia. Abrazar a alguien sin miedo."
+
+    pochita "Si sueñas fuerte... tal vez."
+
+    jump capitulo_1
+
+label capitulo_1:
 
     scene bg_denji_room with fade
     play music "audio/rain.ogg"
 
-    show denji tired at center
     denji "Otra vez ese sueño. Otra vez esa sangre. ¿Qué parte de mí sigue siendo mía?"
 
-    "La habitación es pequeña. El colchón está en el suelo. Pochita duerme a su lado, envuelto en una manta vieja."
+    pochita "¿Tienes hambre, Denji?"
 
-    show pochita happy at left
-    pochita "¿Tenés hambre, Denji?"
+    denji "Siempre tengo hambre. Pero ya ni sé si es físico... o del otro."
 
-    show denji sad at center
-    denji "Siempre tengo hambre. Pero ya ni sé si es físico o del otro."
+    narrator "La habitación es pequeña. El colchón está en el suelo. El techo gotea. Afuera, la lluvia no cesa."
 
     menu:
         "Salir a buscar trabajo":
@@ -25,35 +67,34 @@ label escena_bosque:
     scene bg_forest with fade
     play music "audio/tense_theme.ogg"
 
-    "Denji camina por un sendero fangoso. Lo espera el cobrador de deudas."
+    narrator "Denji camina por un sendero fangoso. Lo espera el cobrador de deudas."
 
     show yakuza angry at right
-    yakuza "Hoy matás a un demonio. O te mato yo."
+    yakuza "Hoy matas a un demonio. O te mato yo."
 
     show denji neutral at left
     denji "¿Y si no quiero?"
 
-    yakuza "Entonces Pochita muere primero. ¿Querés eso?"
+    yakuza "Entonces tu mascota muere primero. ¿Quieres eso?"
 
-    menu:
-        "Aceptar la misión":
-            jump escena_demonio_zombi
-        "Atacar al cobrador":
-            "Denji intenta golpearlo, pero lo derriban. Lo arrastran al galpón igual."
-            jump escena_demonio_zombi
+    denji "No... está bien. Lo haré."
+
+    narrator "Lo llevan a un galpón abandonado. El aire huele a óxido y carne podrida."
+
+    jump escena_demonio_zombi
 
 label escena_confesion:
 
     scene bg_denji_room with fade
     play music "audio/soft_theme.ogg"
 
-    show denji sad at center
-    denji "Pochita... si muero, ¿podés vivir por mí?"
+    denji "Pochita... si muero, ¿puedes vivir por mí?"
 
-    show pochita serious at left
-    pochita "Si vos morís, yo te doy mi corazón. Pero viví, Denji. Viví como vos querés."
+    pochita "Si tú mueres, yo te doy mi corazón. Pero vive, Denji. Vive como tú quieras."
 
-    "Denji llora en silencio. Afuera, alguien golpea la puerta. Es el cobrador. Lo arrastran al galpón."
+    denji "Quiero comer pan con mermelada. Quiero abrazar a alguien. Quiero dormir sin miedo."
+
+    narrator "Denji llora en silencio. Afuera, alguien golpea la puerta. Es el cobrador. Lo arrastran al galpón."
 
     jump escena_demonio_zombi
 
@@ -62,25 +103,26 @@ label escena_demonio_zombi:
     scene bg_warehouse with fade
     play music "audio/motorsaw.ogg"
 
-    "Denji entra al galpón. Decenas de zombis lo rodean. El cobrador lo traicionó."
+    narrator "Denji entra al galpón. Decenas de zombis lo rodean. El cobrador lo traicionó."
 
-    show yakuza angry at right
-    yakuza "Gracias por venir, perro. Ahora te convertís en comida."
+    yakuza "Gracias por venir, perro. Ahora te conviertes en comida."
 
-    "Los zombis lo atacan. Pochita salta para protegerlo. Ambos caen. Sangre. Silencio."
+    denji "¡Pochita!"
 
-    show denji weak at center
+    narrator "Los zombis lo atacan. Pochita salta para protegerlo. Ambos caen. Sangre. Silencio."
+
     denji "No quiero morir. No así."
 
-    show pochita injured at left
-    pochita "Viví tu sueño, Denji. Usá mi poder."
+    pochita "Vive tu sueño, Denji. Usa mi poder."
 
-    "Fusión. La motosierra emerge de su pecho. Denji se levanta, transformado."
+    narrator "Fusión. La motosierra emerge de su pecho. Denji se levanta, transformado."
 
     show denji transformed at center
     denji "¡Ahora sí tengo hambre!"
 
-    "Combate brutal. Cortes, gritos, sangre. Los zombis caen uno por uno."
+    narrator "Combate brutal. Cortes. Gritos. Sangre. Los zombis caen uno por uno."
+
+    narrator "Denji no piensa. Solo corta. Solo sobrevive."
 
     jump escena_makima
 
@@ -89,15 +131,15 @@ label escena_makima:
     scene bg_street_morning with fade
     play music "audio/soft_theme.ogg"
 
-    "Denji despierta entre cadáveres. Una mujer lo observa."
+    narrator "Denji despierta entre cadáveres. Una mujer lo observa."
 
     show makima calm at right
-    makima "¿Sos humano o demonio?"
+    makima "¿Eres humano o demonio?"
 
     show denji confused at left
     denji "No sé. Solo quiero desayuno."
 
-    makima "Entonces sos útil. Vení conmigo."
+    makima "Entonces eres útil. Ven conmigo."
 
     menu:
         "Aceptar sin preguntar":
@@ -112,17 +154,15 @@ label escena_auto:
     scene bg_car_interior with fade
     play music "audio/soft_theme.ogg"
 
-    "Makima conduce. Denji mira por la ventana. El mundo parece distinto."
+    makima "¿Tienes nombre?"
 
-    show makima smile at right
-    makima "¿Tenés nombre?"
-
-    show denji tired at left
     denji "Denji. Y tengo hambre."
 
-    makima "Entonces comé. Después, matás demonios para mí."
+    makima "Entonces come. Después, cazas demonios para mí."
 
-    "Denji muerde el pan. Llora sin que Makima lo note."
+    narrator "Denji muerde el pan. Llora sin que Makima lo note."
+
+    denji "¿Esto es amor? ¿O solo otra cadena?"
 
     jump escena_oficina
 
@@ -131,7 +171,7 @@ label escena_oficina:
     scene bg_office with fade
     play music "audio/tense_theme.ogg"
 
-    "Makima presenta a Denji ante sus nuevos compañeros."
+    makima "Él es Denji. Es mío. Trátenlo bien."
 
     show aki serious at left
     aki "No necesitamos perros."
@@ -139,7 +179,6 @@ label escena_oficina:
     show power excited at right
     power "¡Yo quiero pelear con él! ¡Tiene cara de idiota!"
 
-    show denji neutral at center
     denji "¿Esto es familia? ¿Esto es trabajo?"
 
     menu:
@@ -158,10 +197,9 @@ label escena_rooftop:
     scene bg_rooftop with fade
     play music "audio/soft_theme.ogg"
 
-    "Denji se sienta solo. Mira las estrellas. Pochita aparece en su mente."
+    narrator "Denji se sienta en el techo. Mira las estrellas. Pochita aparece en su mente."
 
-    show pochita ghost at left
-    pochita "¿Todavía querés ese sueño, Denji?"
+    pochita "¿Todavía quieres ese sueño, Denji?"
 
     menu:
         "Sí. Aunque me destruya.":
@@ -176,6 +214,7 @@ label final_capitulo_1:
     scene black with fade
     play sound "audio/motorsaw.ogg"
 
-    "Pantalla negra. Sonido de motosierra. Fin del capítulo 1."
+    narrator "Pantalla negra. Sonido de motosierra. Fin del capítulo 1."
 
     return
+
