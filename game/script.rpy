@@ -218,3 +218,215 @@ label final_capitulo_1:
 
     return
 
+define denji = Character("Denji", color="#f4c542")
+define makima = Character("Makima", color="#e34234")
+define aki = Character("Aki", color="#42a5f5")
+define power = Character("Power", color="#ec407a")
+define pochita = Character("Pochita", color="#ff7043")
+define narrator = Character(None)
+
+default aki_confianza = 0
+default power_confianza = 0
+default humanidad = True
+
+label capitulo_2:
+
+    scene bg_car_interior with fade
+    play music "audio/soft_theme.ogg"
+
+    show denji tired at left
+    show makima calm at right
+
+    denji "¿Esto es Tokio? Nunca imaginé que fuera tan gris."
+
+    makima "La ciudad no es gris. Solo depende de cómo la mires."
+
+    denji "¿Y tú cómo la ves?"
+
+    makima "Como un tablero. Y tú eres una pieza nueva."
+
+    narrator "Denji no entiende. Pero le gusta cómo suena."
+
+    makima "Hoy conocerás a tu compañero. No lo decepciones."
+
+    jump escena_aki
+
+label escena_aki:
+
+    scene bg_street_day with fade
+    play music "audio/rain.ogg"
+
+    show aki serious at right
+    show denji neutral at left
+
+    aki "¿Este es el nuevo?"
+
+    denji "Soy Denji. Tengo una motosierra en el pecho. ¿Eso cuenta?"
+
+    aki "No me impresiona. Si no sirves, te saco yo mismo."
+
+    narrator "Aki lo lleva por un callejón. Lo golpea sin previo aviso."
+
+    denji "¡¿Qué te pasa?!"
+
+    aki "Renuncia. No estás hecho para esto."
+
+    menu:
+        "Pelear con Aki":
+            $ aki_confianza -= 1
+            jump pelea_aki
+        "Aguantar el golpe":
+            $ aki_confianza += 1
+            jump respeto_aki
+
+label pelea_aki:
+
+    narrator "Denji lo golpea. Aki lo derriba. Makima aparece."
+
+    show makima neutral at center
+
+    makima "¿Qué pasó?"
+
+    aki "No sirve. Es un perro callejero."
+
+    makima "Entonces vivirá contigo. Aprende a entrenarlo."
+
+    narrator "Aki suspira. Denji sonríe con sangre en la boca."
+
+    jump escena_departamento
+
+label respeto_aki:
+
+    narrator "Denji aguanta. No responde. Makima aparece."
+
+    show makima neutral at center
+
+    makima "¿Cómo fue?"
+
+    aki "No sirve. Pero no se rinde."
+
+    makima "Entonces vivirá contigo. Aprende a entenderlo."
+
+    narrator "Aki frunce el ceño. Denji baja la cabeza."
+
+    jump escena_departamento
+
+label escena_departamento:
+
+    scene bg_apartment with fade
+    play music "audio/soft_theme.ogg"
+
+    narrator "El departamento de Aki es limpio, ordenado, silencioso. Todo lo que Denji no es."
+
+    show aki serious at right
+    show denji neutral at left
+
+    aki "No toques mis cosas. No hagas ruido. No molestes."
+
+    denji "¿Y si quiero usar el baño primero?"
+
+    aki "Entonces peleamos por eso."
+
+    menu:
+        "Responder con sarcasmo":
+            $ aki_confianza -= 1
+            jump escena_rutina
+        "Pedir disculpas":
+            $ aki_confianza += 1
+            jump escena_rutina
+
+label escena_rutina:
+
+    scene bg_morning_tokyo with fade
+    play music "audio/soft_theme.ogg"
+
+    narrator "Días pasan. Denji aprende a limpiar, cocinar, patrullar. Pero no a entender a Aki."
+
+    show denji neutral at center
+    show aki serious at right
+
+    denji "¿Por qué haces esto? ¿Por qué cazas demonios?"
+
+    aki "Porque uno mató a mi familia. Y porque quiero matar a otro."
+
+    denji "¿Y si no lo logras?"
+
+    aki "Entonces muero intentándolo."
+
+    narrator "Denji no responde. Pero algo en él cambia."
+
+    jump escena_power
+
+label escena_power:
+
+    scene bg_office with fade
+    play music "audio/tense_theme.ogg"
+
+    show makima calm at center
+    show power excited at right
+    show denji surprised at left
+
+    makima "Denji, conoce a tu nueva compañera."
+
+    power "¡Soy Power! ¡Soy la mejor! ¡Tú eres mi sirviente!"
+
+    denji "¿Qué clase de demonio eres?"
+
+    power "¡Soy la Demonio de la Sangre! ¡Y tengo hambre!"
+
+    makima "Ambos tienen demonios. Ambos serán juzgados por resultados."
+
+    menu:
+        "Aceptar trabajar con Power":
+            $ power_confianza += 1
+            jump escena_mision
+        "Rechazarla":
+            $ power_confianza -= 1
+            jump escena_mision
+
+label escena_mision:
+
+    scene bg_street_night with fade
+    play music "audio/motorsaw.ogg"
+
+    narrator "Denji y Power patrullan juntos. Ella habla sin parar. Él solo escucha."
+
+    show power excited at right
+    show denji neutral at left
+
+    power "¡Mi gato Nyako es más importante que tú! ¡Si algo le pasa, mato a todos!"
+
+    denji "¿Tienes un gato?"
+
+    power "¡Sí! ¡Y lo amo más que a la humanidad!"
+
+    narrator "Denji sonríe. Por primera vez, siente que no está solo."
+
+    menu:
+        "Contarle sobre Pochita":
+            $ power_confianza += 1
+            jump escena_final_2
+        "Guardar silencio":
+            jump escena_final_2
+
+label escena_final_2:
+
+    scene bg_rooftop with fade
+    play music "audio/soft_theme.ogg"
+
+    narrator "Denji se sienta en el techo. Mira la ciudad. Piensa en Makima, Aki y Power."
+
+    show denji neutral at center
+    show pochita ghost at left
+
+    denji "¿Esto es suerte? ¿O solo otra cadena?"
+
+    pochita "Vive tu sueño, Denji. Pero no olvides quién eres."
+
+    menu:
+        "Seguir el sueño sin pensar":
+            $ humanidad = False
+            return
+        "Buscar algo real":
+            $ humanidad = True
+            return
