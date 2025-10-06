@@ -1,138 +1,181 @@
-﻿# script.rpy
+﻿label capitulo_1:
 
-label start:
-    jump cap1_start
+    scene bg_denji_room with fade
+    play music "audio/rain.ogg"
 
-# =========================
-# VARIABLES INICIALES
-# =========================
-default humanidad = 0
-default violencia = 0
-default lealtad_corp = 0
-default camino = ""
+    show denji tired at center
+    denji "Otra vez ese sueño. Otra vez esa sangre. ¿Qué parte de mí sigue siendo mía?"
 
-# =========================
-# DEFINICIÓN DE PERSONAJES
-# =========================
-define d = Character("David", color="#FFD700")
-define gloria = Character("Gloria", color="#FF9999")
-define yumi = Character("Yumi", color="#99CCFF")
-define rex = Character("Rex", color="#FF6600")
-define teacher = Character("Profesora Arasaka", color="#CCCCCC")
+    "La habitación es pequeña. El colchón está en el suelo. Pochita duerme a su lado, envuelto en una manta vieja."
 
-# =========================
-# ESCENARIOS
-# =========================
-image bg_nightcity_district = "images/bg_nightcity_district.jpg"
-image bg_classroom_arasaka = "images/bg_classroom_arasaka.jpg"
+    show pochita happy at left
+    pochita "¿Tenés hambre, Denji?"
 
-# =========================
-# PERSONAJES VISUALES
-# =========================
-image gloria worried = "images/gloria_worried.png"
-image yumi neutral = "images/yumi_neutral.png"
-image rex smug = "images/rex_smug.png"
-image teacher_arasaka = "images/teacher_arasaka.png"
-
-# =========================
-# CAPÍTULO 1
-# =========================
-label cap1_start:
-
-    scene bg_nightcity_district with fade
-    play music "music/nightcity_loop.ogg" fadein 1.0
-
-    "Night City nunca duerme. Pero para los que no tenemos dinero, tampoco perdona."
-    "Soy David Martínez. Hoy es mi primer día en la prestigiosa Academia Arasaka."
-    "Mamá cree que este es el comienzo de algo grande, pero yo sé lo que significa vivir en las calles: nadie te espera si caes."
-
-    show gloria worried at left with dissolve
-    gloria "David… recuerda comer algo antes de entrar, no llegues muerto de hambre como siempre."
-    d "Lo sé, mamá. Estoy bien."
-    gloria "Solo cuida tu espalda, cariño. No todos aquí son gente decente."
-    d "(Lo sé… y aún así, debo hacerlo.)"
-
-    "El camino hasta la entrada principal es un caos de hologramas, anuncios de ciberimplantes y drones patrullando el área."
-    "No hay margen de error. En Arasaka, la perfección es una obligación, y cualquier fallo puede costarte caro."
-
-    show yumi neutral at right with dissolve
-    yumi "¡Eh, David! Llegas justo a tiempo… aunque no sé si para bien o para mal."
-    d "Yumi… vaya, ya veo que estás igual de sarcástica que siempre."
-    yumi "Aprenderás rápido que en esta ciudad, los que no se adaptan, se quedan atrás."
-    d "Eso lo sé demasiado bien…"
+    show denji sad at center
+    denji "Siempre tengo hambre. Pero ya ni sé si es físico o del otro."
 
     menu:
-        "¿Cómo responde David?"
-        "Con orgullo y confianza":
-            $ humanidad += 1
-            d "No vine aquí para ser uno más. Estoy listo para demostrar lo que valgo."
-            yumi "Mm… veremos cuánto dura tu valentía."
-        "Con cautela, evaluando la situación":
-            d "Haré lo que pueda… necesito observar primero."
-            $ humanidad += 0
-            yumi "Observador, eh… me gusta eso. Pero no por mucho."
-        "Con enojo, impaciente":
-            $ violencia += 1
-            d "¡Solo quiero entrar y empezar! No necesito charlas."
-            yumi "Calma, Martínez… nadie aquí tolera impulsos tontos."
+        "Salir a buscar trabajo":
+            jump escena_bosque
+        "Quedarse y hablar con Pochita":
+            jump escena_confesion
 
-    scene bg_classroom_arasaka with fade
-    play music "music/academia_loop.ogg" fadein 1.0
+label escena_bosque:
 
-    "El aula está llena de estudiantes con implantes recién estrenados, trajes corporativos y chips de datos parpadeando en sus muñecas."
-    "Rex Arasaka, el hijo del ejecutivo que supervisa esta generación, me lanza una mirada desde su asiento."
+    scene bg_forest with fade
+    play music "audio/tense_theme.ogg"
 
-    show rex smug at right with dissolve
-    rex "Así que tú eres David Martínez… he oído de ti. Vamos a ver si eres digno de Arasaka."
-    d "(Su mirada me pesa… pero no puedo mostrar miedo.)"
+    "Denji camina por un sendero fangoso. Lo espera el cobrador de deudas."
+
+    show yakuza angry at right
+    yakuza "Hoy matás a un demonio. O te mato yo."
+
+    show denji neutral at left
+    denji "¿Y si no quiero?"
+
+    yakuza "Entonces Pochita muere primero. ¿Querés eso?"
 
     menu:
-        "¿Cómo responder a Rex?"
-        "Con firmeza, sin miedo":
-            $ lealtad_corp -= 1
-            d "No vine aquí a complacer a nadie. Aprenderé a mi manera."
-            rex "Interesante… arrogancia, pero veremos si sirve para algo."
-        "Con sumisión estratégica":
-            $ lealtad_corp += 1
-            d "Espero poder estar a la altura… aprenderé de los mejores."
-            rex "Bien. Al menos eres inteligente."
-        "Con sarcasmo":
-            $ humanidad += 1
-            d "¿Dignidad Arasaka? Suena más a publicidad."
-            rex "¡Ja! Otro que piensa que es gracioso… veremos hasta cuándo."
+        "Aceptar la misión":
+            jump escena_demonio_zombi
+        "Atacar al cobrador":
+            "Denji intenta golpearlo, pero lo derriban. Lo arrastran al galpón igual."
+            jump escena_demonio_zombi
 
-    show teacher_arasaka at center with dissolve
-    teacher "Bienvenidos a la Academia Arasaka. Este año será distinto… exigiremos lo mejor de ustedes."
-    teacher "Recuerden: aquí, cada decisión que tomen afectará su futuro. Cada error será recordado."
+label escena_confesion:
 
-    "Un escalofrío recorre mi espalda. Las palabras de la profesora no son solo formalidades: son advertencias."
+    scene bg_denji_room with fade
+    play music "audio/soft_theme.ogg"
 
-    "Durante el recreo, veo a un estudiante más joven siendo intimidado por un grupo de compañeros con implantes visibles y armas de entrenamiento."
+    show denji sad at center
+    denji "Pochita... si muero, ¿podés vivir por mí?"
+
+    show pochita serious at left
+    pochita "Si vos morís, yo te doy mi corazón. Pero viví, Denji. Viví como vos querés."
+
+    "Denji llora en silencio. Afuera, alguien golpea la puerta. Es el cobrador. Lo arrastran al galpón."
+
+    jump escena_demonio_zombi
+
+label escena_demonio_zombi:
+
+    scene bg_warehouse with fade
+    play music "audio/motorsaw.ogg"
+
+    "Denji entra al galpón. Decenas de zombis lo rodean. El cobrador lo traicionó."
+
+    show yakuza angry at right
+    yakuza "Gracias por venir, perro. Ahora te convertís en comida."
+
+    "Los zombis lo atacan. Pochita salta para protegerlo. Ambos caen. Sangre. Silencio."
+
+    show denji weak at center
+    denji "No quiero morir. No así."
+
+    show pochita injured at left
+    pochita "Viví tu sueño, Denji. Usá mi poder."
+
+    "Fusión. La motosierra emerge de su pecho. Denji se levanta, transformado."
+
+    show denji transformed at center
+    denji "¡Ahora sí tengo hambre!"
+
+    "Combate brutal. Cortes, gritos, sangre. Los zombis caen uno por uno."
+
+    jump escena_makima
+
+label escena_makima:
+
+    scene bg_street_morning with fade
+    play music "audio/soft_theme.ogg"
+
+    "Denji despierta entre cadáveres. Una mujer lo observa."
+
+    show makima calm at right
+    makima "¿Sos humano o demonio?"
+
+    show denji confused at left
+    denji "No sé. Solo quiero desayuno."
+
+    makima "Entonces sos útil. Vení conmigo."
 
     menu:
-        "¿Qué hace David?"
-        "Intervenir y ayudar al estudiante":
-            $ humanidad += 2
-            "David se acerca y enfrenta al grupo, obligándolos a retroceder."
-            yumi "¡Eso estuvo bien! No todos harían eso."
-            rex "¡Bah! Inútil… eso no ayuda a nadie."
-        "Ignorar y seguir su camino":
-            $ humanidad -= 1
-            "David decide no involucrarse. No es su problema."
-            yumi "(Suspiro) A veces eres demasiado frío."
-        "Tomar ventaja de la situación":
-            $ violencia += 1
-            "David empuja al líder del grupo y se gana respeto inmediato, aunque despierta enemistad."
-            rex "Hmm… ese chico tiene agallas… y problemas en puerta."
+        "Aceptar sin preguntar":
+            $ makima_confianza = True
+            jump escena_auto
+        "Preguntar quién es":
+            $ makima_confianza = False
+            jump escena_auto
 
-    # Evaluación del camino
-    if humanidad > violencia and humanidad > lealtad_corp:
-        $ camino = "calle"
-    elif lealtad_corp > humanidad and lealtad_corp > violencia:
-        $ camino = "corporación"
-    else:
-        $ camino = "caos"
+label escena_auto:
 
-    "El día termina con más preguntas que respuestas. Night City se extiende bajo un cielo de neón, recordándome que cada decisión que tome me acercará a la calle, a la corporación, o a la perdición."
+    scene bg_car_interior with fade
+    play music "audio/soft_theme.ogg"
 
-    jump cap2_start
+    "Makima conduce. Denji mira por la ventana. El mundo parece distinto."
+
+    show makima smile at right
+    makima "¿Tenés nombre?"
+
+    show denji tired at left
+    denji "Denji. Y tengo hambre."
+
+    makima "Entonces comé. Después, matás demonios para mí."
+
+    "Denji muerde el pan. Llora sin que Makima lo note."
+
+    jump escena_oficina
+
+label escena_oficina:
+
+    scene bg_office with fade
+    play music "audio/tense_theme.ogg"
+
+    "Makima presenta a Denji ante sus nuevos compañeros."
+
+    show aki serious at left
+    aki "No necesitamos perros."
+
+    show power excited at right
+    power "¡Yo quiero pelear con él! ¡Tiene cara de idiota!"
+
+    show denji neutral at center
+    denji "¿Esto es familia? ¿Esto es trabajo?"
+
+    menu:
+        "Responder con sarcasmo":
+            $ power_confianza = True
+            jump escena_rooftop
+        "Callar y observar":
+            $ aki_confianza = True
+            jump escena_rooftop
+        "Mirar a Makima":
+            $ makima_confianza += 1
+            jump escena_rooftop
+
+label escena_rooftop:
+
+    scene bg_rooftop with fade
+    play music "audio/soft_theme.ogg"
+
+    "Denji se sienta solo. Mira las estrellas. Pochita aparece en su mente."
+
+    show pochita ghost at left
+    pochita "¿Todavía querés ese sueño, Denji?"
+
+    menu:
+        "Sí. Aunque me destruya.":
+            $ humanidad = False
+            jump final_capitulo_1
+        "No. Quiero algo real.":
+            $ humanidad = True
+            jump final_capitulo_1
+
+label final_capitulo_1:
+
+    scene black with fade
+    play sound "audio/motorsaw.ogg"
+
+    "Pantalla negra. Sonido de motosierra. Fin del capítulo 1."
+
+    return
