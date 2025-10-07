@@ -1,206 +1,375 @@
-﻿# CHAINSAW MAN: SANGRE Y ENGRANAJES
-# Proyecto TP2 - Novela Visual
-# Autor: [Joaquin]
-# Idioma: Español
+﻿# -------------------------
+# DEFINICIÓN DE PERSONAJES CON COLORES
+# -------------------------
+define d = Character("Denji", color="#FFD700")
+define pochita = Character("Pochita", color="#FF8C00")
+define p = Character("Power", color="#FF4500")
+define a = Character("Aki", color="#1E90FF")
+define m = Character("Makima", color="#FF69B4")
+define demonio = Character("Demonio", color="#8B0000")
+define demonio_nuevo = Character("Demonio Nuevo", color="#880000")
 
-# Declaración de personajes
-define d = Character("Denji", color="#FF5C5C")
-define m = Character("Makima", color="#FFB6C1")
-define p = Character("Power", color="#FF7070")
-define a = Character("Aki", color="#9AD0EC")
-define po = Character("Pochita", color="#FFA500", what_prefix="(", what_suffix=")")
-define narrador = Character(None, kind=narrator)
-
-# Fondo y música inicial
+# -------------------------
+# INICIO
+# -------------------------
 label start:
-
-    scene bg_city_ruins
-    play music "theme_intro.mp3" fadein 1.5
+    scene city_rooftop_night
     with fade
 
-    narrador "Tokio. Años después de la gran guerra entre humanos y demonios."
-    narrador "Los cazadores de demonios sobreviven entre ruinas y miedo."
-    d "Otro día, otra cabeza que cortar. Ya ni sé por qué sigo haciéndolo..."
-    po "Denji... ¿aún recuerdas tu sueño?"
-    d "¿Pochita...? Hace tiempo que no te oía."
+    "La ciudad está cubierta de sombras y la lluvia golpea los techos mientras se escuchan gritos de demonios."
+    d "Otro día más, otro demonio… ¿por qué siempre yo?"
+    pochita "¡Denji, no te preocupes! Yo te respaldo."
+    p "¡Vamos, Denji! ¡No te quedes ahí!"
+    a "Mantente alerta. No subestimes la situación."
+    m "Observa y aprende, Denji. Cada movimiento tiene un precio."
 
-    scene bg_office_night with dissolve
-    play sound "door_open.mp3"
-
-    m "Denji. Tengo una nueva misión para ti."
-    d "¿Otra más? Apenas me queda gasolina."
-    m "Un demonio desconocido apareció al norte. Es una amenaza de nivel especial."
-    m "Confío en que harás lo correcto, como siempre."
-    d "..."
-    d "¿Y si no quiero?"
-    m "Entonces morirás. Pero morirías con propósito."
+    "De repente, un demonio con brazos como látigos de acero emerge de un callejón."
+    demonio "¡Intrusos! ¡Vuestra sangre será mía!"
+    d "Maldita sea… ¡Vamos allá!"
+    pochita "¡Vamos juntos, Denji!"
+    p "¡Cuidado con los brazos!"
+    a "Analiza su patrón de ataque."
 
     menu:
-        "¿Qué hará Denji?":
-            "Obedecer a Makima":
-                jump obedecer
-            "Desobedecer la orden":
-                jump desobedecer
-            "Buscar venganza personal":
-                jump venganza
+        "¿Qué haces?":
+            "Atacar directamente":
+                jump rama_1_a
+            "Huir y buscar aliados":
+                jump rama_2_a
+            "Negociar con demonio":
+                jump rama_3_a
+            "Observar y esperar":
+                jump rama_4_a
+            "Investigar sonido extraño cercano":
+                jump rama_5_a
 
-# ====== RAMA 1 =======
-label obedecer:
-
-    scene bg_warehouse_dark
-    play music "mission.mp3" fadein 1.0
+# -------------------------
+# RAMA 1 – ATAQUE DIRECTO
+# -------------------------
+label rama_1_a:
+    scene city_night_rain
     with fade
 
-    d "Está bien, Makima. Pero Power viene conmigo."
-    m "Haz lo que quieras. Solo tráeme el corazón del demonio."
+    d "¡No puedo dejar que lastime a nadie más!"
+    p "¡Denji, cuidado! ¡Ese demonio es enorme!"
+    a "Nos respaldamos, ve con todo!"
+    m "Denji, controla tu fuerza o destruirás todo a tu alrededor."
+    pochita "¡Sígueme, Denji! ¡Yo te cubro!"
 
-    p "¡Sí! ¡Sangre, tripas y gloria!"
-    d "No sé por qué sigo dejándome arrastrar por ti..."
-    narrador "Ambos entran al almacén. Un rugido demoníaco retumba."
-
-    play sound "chainsaw_on.mp3"
-    d "¡Vamos allá!"
+    "Denji activa la motosierra, cortando el aire con un zumbido metálico."
+    "La lluvia intensifica la escena y el reflejo de luces de neón crea destellos sobre charcos de agua."
+    "El demonio lanza un golpe, pero Denji logra esquivarlo, dejando marcas profundas en las paredes."
 
     menu:
-        "En medio del combate...":
-            "Confiar en Makima y seguir órdenes":
-                jump obedecer_makima
-            "Dudar y proteger a Power":
-                jump obedecer_power
+        "¿Usas la motosierra completa o parcial?":
+            "Completa":
+                jump rama_1_b
+            "Parcial":
+                jump rama_1_c
 
-label obedecer_makima:
-    scene bg_hell_gate
-    play music "betrayal.mp3" fadein 1.0
+label rama_1_b:
+    "Denji lanza un ataque completo, cortando el aire mientras el demonio retrocede."
+    demonio "¡GRRAAAHH!"
+    p "¡Cuidado con su cola!"
+    a "¡No lo dejes escapar!"
+    pochita "¡Estoy contigo, Denji!"
+
+    "De repente, un demonio menor salta desde un edificio cercano."
+    demonio "¡Grrr!"
+    d "¡Otra vez no!"
+    p "¡Denji, tenemos que dividirnos!"
+    a "Plan B, rápido."
+    pochita "¡Cúbreme mientras atacas!"
+
+    menu:
+        "¿Persigues al demonio principal o eliminas al menor primero?":
+            "Principal":
+                jump rama_1_b_principal
+            "Menor":
+                jump rama_1_b_menor
+
+label rama_1_b_principal:
+    "Denji se concentra en el demonio principal. Power y Aki eliminan al menor."
+    d "¡No me detengo hasta que caiga!"
+    pochita "¡Vamos juntos!"
+    "El demonio principal cae finalmente, Denji exhausto pero victorioso."
+
+    menu:
+        "¿Recuperarte solo o con Power?":
+            "Solo":
+                jump rama_1_final_1
+            "Con Power":
+                jump rama_1_final_2
+
+label rama_1_b_menor:
+    "El demonio menor es eliminado rápidamente, pero el principal aprovecha la distracción."
+    demonio "¡Jajajaja! ¡Vais a morir!"
+    d "¡Maldita sea!"
+    p "¡Tenemos que reagruparnos!"
+    a "¡Plan B, Denji!"
+    pochita "¡Cuidado, Denji!"
+    jump rama_1_final_3
+
+label rama_1_c:
+    "Herimos parcialmente al demonio, que retrocede entre las sombras."
+    d "Volverá más fuerte…"
+    p "¡Podemos atraparlo juntos!"
+    a "O lo dejamos y planeamos mejor."
+    pochita "Yo puedo ayudar a cubrirte."
+
+    menu:
+        "¿Persigues o te refugias?":
+            "Persigues":
+                jump rama_1_final_4
+            "Refugiarse":
+                jump rama_1_final_5
+
+# -------------------------
+# RAMA 2 – HUIR Y BUSCAR ALIADOS
+# -------------------------
+label rama_2_a:
+    scene city_dark_streets
     with fade
 
-    narrador "El demonio cae. Pero la energía de Makima se apodera del aire."
-    m "Buen trabajo, Denji. Ahora... entrégame tu corazón."
-    d "¿Qué...?"
-    m "Siempre fue mi objetivo. El contrato se cumple ahora."
-    play sound "heartbeat.mp3"
-    d "No... ¡No!"
-    narrador "El mundo se oscurece. Denji se convierte en el arma final de Makima."
-    jump final1
+    "Denji corre por calles oscuras y llenas de escombros."
+    p "¡Por aquí, Denji!"
+    d "Perfecto, Power. Necesito tu ayuda."
+    a "No nos separes. Cada segundo cuenta."
+    pochita "¡Denji, confía en mí!"
 
-label obedecer_power:
-    scene bg_warehouse_dark
-    p "¡Denji, cuidado!"
-    play sound "fight.mp3"
-    narrador "Power salta frente a él, recibiendo el golpe fatal."
-    d "¡Power, no!"
-    p "Tú... corta su cabeza por mí..."
-    d "..."
-    play sound "chainsaw_on.mp3"
-    narrador "Denji destruye al demonio, pero su furia lo consume."
-    jump final2
+    menu:
+        "¿A quién buscas primero?":
+            "Power":
+                jump rama_2_b
+            "Aki":
+                jump rama_2_c
 
-# ====== RAMA 2 =======
-label desobedecer:
+label rama_2_b:
+    "Power se une a Denji y ambos planean un ataque estratégico."
+    p "¡Denji! Esta vez vamos juntos."
+    d "¡Perfecto!"
+    a "Si seguimos así, podremos derribarlo rápido."
+    pochita "¡Yo cubro la retaguardia!"
 
-    scene bg_city_ruins
+    "Una explosión sacude la calle: un demonio bomba aparece."
+    demonio "¡Boom!"
+    d "¡Cuidado!"
+    p "¡Esquiva!"
+    a "¡Debemos reagruparnos!"
+    pochita "¡Denji, rápido!"
+
+    menu:
+        "Cooperar o pelear separados?":
+            "Cooperar":
+                jump rama_2_final_1
+            "Pelea separada":
+                jump rama_2_final_2
+
+label rama_2_c:
+    "Aki llega y propone un ataque sigiloso."
+    a "Debemos mantenernos ocultos y atacar cuando menos lo esperen."
+    d "¡Entendido!"
+    p "Espero que esto funcione…"
+    pochita "¡Denji, vamos a sorprenderlos!"
+
+    menu:
+        "Sigilo o ataque frontal?":
+            "Sigilo":
+                jump rama_2_final_3
+            "Frontal":
+                jump rama_2_final_4
+
+label rama_3_a:
+    scene alley_dark
     with fade
-    d "No pienso seguir tus órdenes, Makima."
-    m "Eso es... decepcionante, Denji."
-    a "Te estás jugando la vida, Denji."
-    d "La vida nunca me dio nada, Aki."
-    a "Entonces déjame ayudarte, por última vez."
+
+    d "Tal vez pueda hablar con él…"
+    pochita "¡Denji, sé cuidadoso!"
+    p "¿Hablar con un demonio? ¿Estás loco?"
+    a "Analiza sus movimientos mientras hablas."
+    demonio "¿Hablas o solo vienes a morir?"
+    m "Observa y aprende, Denji. Cada palabra importa."
 
     menu:
-        "¿Aceptar ayuda de Aki?":
-            "Sí, trabajar juntos":
-                jump desobedecer_aki
-            "No, hacerlo solo":
-                jump desobedecer_solo
+        "¿Intentas persuadirlo o amenazarlo?":
+            "Persuadir":
+                jump rama_3_b
+            "Amenazar":
+                jump rama_3_c
 
-label desobedecer_aki:
-    play music "mission.mp3"
-    scene bg_city_night
-    narrador "Ambos se enfrentan al demonio del vacío."
-    play sound "fight.mp3"
-    a "¡Ahora, Denji!"
-    d "¡Toma esto!"
-    play sound "explosion.mp3"
-    narrador "El demonio cae. Pero Aki está herido de muerte."
-    a "Al menos... esta vez... no fallamos."
-    d "No..."
-    jump final3
+label rama_3_b:
+    d "No necesitamos pelear… podemos llegar a un acuerdo."
+    pochita "¡Sí, Denji, mantén la calma!"
+    demonio "Hmmm… interesante…"
+    a "Sigue con cuidado, Denji."
+    menu:
+        "¿Ofreces algo a cambio o pides información?":
+            "Ofrecer":
+                jump rama_3_final_1
+            "Pedir información":
+                jump rama_3_final_3
 
-label desobedecer_solo:
-    play music "betrayal.mp3"
-    scene bg_hell_gate
-    narrador "Denji se lanza solo al combate. Pero algo dentro de él despierta."
-    po "Demasiada sangre... demasiada rabia..."
-    play sound "heartbeat.mp3"
-    d "¡POOOCHITA!"
-    narrador "Su humanidad desaparece. Solo queda la motosierra."
-    jump final4
+label rama_3_c:
+    d "¡Si no te detienes, te detendré!"
+    pochita "¡Cuidado, Denji!"
+    demonio "¡GRRRAAAHHH!"
+    p "¡Ataca con cuidado!"
+    menu:
+        "¿Atacar frontal o esperar estrategia?":
+            "Frontal":
+                jump rama_3_final_4
+            "Esperar":
+                jump rama_3_final_2
 
-# ====== RAMA 3 =======
-label venganza:
+label rama_4_a:
+    scene rooftop_overview
+    with fade
 
-    scene bg_office_night
-    with dissolve
-    d "No más órdenes. No más mentiras."
-    p "Denji, ¿qué haces?"
-    d "Lo que debí hacer desde el principio: cortar la cabeza del sistema."
-    p "Eso suena... ¡divertido!"
+    d "Tal vez pueda analizarlo primero."
+    pochita "¡Denji, vigila todos sus movimientos!"
+    a "Observa sus patrones."
+    m "A veces la paciencia es la mejor arma."
 
     menu:
-        "Durante el ataque a la sede...":
-            "Perdonar a Power cuando te traiciona":
-                jump venganza_perdonar
-            "Matar a Power":
-                jump venganza_matar
+        "¿Actúas solo o con Makima?":
+            "Solo":
+                jump rama_4_b
+            "Con Makima":
+                jump rama_4_c
 
-label venganza_perdonar:
-    scene bg_dawn
-    play music "ending_light.mp3"
-    narrador "Denji baja su motosierra."
-    d "No puedo seguir matando a quienes me importan."
-    p "Idiota... yo solo tenía miedo..."
-    narrador "Ambos se enfrentan a Makima juntos, liberando a los demonios esclavizados."
-    d "Si este es el final, que sea libre."
-    jump final5
+label rama_4_b:
+    "Denji actúa solo, anticipando ataques. Logra vencer al demonio pero queda herido."
+    d "Uff… eso estuvo cerca."
+    pochita "¡Lo hiciste bien, Denji!"
+    jump rama_4_final_1
 
-label venganza_matar:
-    scene bg_hell_gate
-    play music "ending_dark.mp3"
-    play sound "chainsaw_on.mp3"
-    narrador "Denji corta a Power sin dudar."
-    d "El amor solo me hizo débil."
-    narrador "Los demonios se arrodillan ante él. El mundo tiembla."
-    m "Bienvenido... nuevo rey de los demonios."
-    jump final6
+label rama_4_c:
+    "Makima observa y guía a Denji. Vencen al demonio con menos daño y mayor estrategia."
+    d "Gracias… Makima."
+    m "Siempre observa primero."
+    pochita "¡Buen trabajo equipo!"
+    jump rama_4_final_2
 
-# ====== FINALES ======
+label rama_5_a:
+    scene city_ruins_night
+    with fade
 
-label final1:
-    scene bg_hell_gate
-    stop music fadeout 2.0
-    narrador "Final 1: El Corazón de Makima — Denji se convierte en su arma definitiva."
+    "Un demonio nuevo emerge entre los escombros, con apariencia aterradora y brazos de cadenas."
+    demonio_nuevo "¡Intrusos! ¡No escaparéis!"
+    d "Esto se ve complicado…"
+    pochita "¡Denji, no estamos solos!"
+    p "¡Aguanta Denji, juntos podemos!"
+    a "Analiza antes de atacar."
+
+    menu:
+        "¿Cortar cabeza o cola primero?":
+            "Cabeza":
+                jump rama_5_final_1
+            "Cola":
+                jump rama_5_final_2
+
+label rama_5_b:
+    menu:
+        "¿Coordinar ataque o ir primero?":
+            "Coordinación":
+                jump rama_5_final_3
+            "Tú primero":
+                jump rama_5_final_4
+
+label rama_5_c:
+    menu:
+        "¿Atacar desde lejos o esperar?":
+            "Desde lejos":
+                jump rama_5_final_5
+            "Esperar":
+                jump rama_5_final_6
+
+# Rama 1
+label rama_1_final_1:
+    "Final: Denji sobrevive solo, gravemente herido. Aprende la importancia de la estrategia."
     return
 
-label final2:
-    scene bg_dawn
-    narrador "Final 2: Huida — Denji sobrevive, pero Power muere. Su humanidad se desvanece."
+label rama_1_final_2:
+    "Final: Denji y Power sobreviven juntos. Su vínculo se fortalece."
     return
 
-label final3:
-    scene bg_city_ruins
-    narrador "Final 3: Sacrificio — Aki muere, pero Denji vence al demonio. El costo es eterno."
+label rama_1_final_3:
+    "Final: Demonio escapa parcialmente. Denji aprende que no siempre se gana."
     return
 
-label final4:
-    scene bg_hell_gate
-    narrador "Final 4: El Demonio Interior — Denji pierde su alma y destruye todo a su paso."
+label rama_1_final_4:
+    "Final: Denji persigue y derrota al demonio, pero con secuelas físicas y emocionales."
     return
 
-label final5:
-    scene bg_dawn
-    narrador "Final 5: Liberación — Denji y Power liberan a los demonios del control humano."
+label rama_1_final_5:
+    "Final: Refugiarse permite sobrevivir, pero el demonio se fortalece."
     return
 
-label final6:
-    scene bg_hell_gate
-    narrador "Final 6: Señor de los Demonios — Denji reina sobre un mundo destruido."
+# Rama 2
+label rama_2_final_1:
+    "Final: Trabajo en equipo exitoso, demonio derrotado. Denji, Power y Aki consolidan habilidades."
     return
+
+label rama_2_final_2:
+    "Final: Pelea separada causa bajas menores, pero derrotan al demonio. Cooperación clave."
+    return
+
+label rama_2_final_3:
+    "Final: Sigilo perfecto, demonio eliminado sin alertar a otros enemigos. Paciencia premiada."
+    return
+
+label rama_2_final_4:
+    "Final: Ataque frontal arriesgado, logran eliminar al demonio con consecuencias graves."
+    return
+
+# Rama 3
+label rama_3_final_1:
+    "Final: Denji cumple favor del demonio y gana inesperada alianza."
+    return
+
+label rama_3_final_2:
+    "Final: Atacar con paciencia, demonio derrotado pero pierde oportunidad de alianza."
+    return
+
+label rama_3_final_3:
+    "Final: Convencer con palabras evita pelea. Denji obtiene información crucial."
+    return
+
+label rama_3_final_4:
+    "Final: Ataca de inmediato y vence, pero pierde posibilidad de alianza."
+    return
+
+# Rama 4
+label rama_4_final_1:
+    "Final: Denji vence solo, pero queda herido y aprende paciencia."
+    return
+
+label rama_4_final_2:
+    "Final: Con Makima, victoria estratégica y mínima exposición al peligro."
+    return
+
+# Rama 5
+label rama_5_final_1:
+    "Final: Nuevo demonio derrotado cortando cabeza. Denji desbloquea arma secreta."
+    return
+
+label rama_5_final_2:
+    "Final: Nuevo demonio derrotado cortando cola, pero escapa parcialmente."
+    return
+
+label rama_5_final_3:
+    "Final: Ataque coordinado perfecto, ambos vencen sin daño."
+    return
+
+label rama_5_final_4:
+    "Final: Denji ataca primero y derrota demonio, Power sufre heridas."
+    return
+
+label rama_5_final_5:
+    "Final: Atacando desde lejos, Denji observa patrón y lo derrota sin exponerse."
+    return
+
+label rama_5_final_6:
+    "Final: Esperar demasiado permite que el demonio escape parcialmente."
+    return
+
